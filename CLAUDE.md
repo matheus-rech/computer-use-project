@@ -6,6 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Claude Workspace is an Electron desktop application that gives Claude computer use capabilities through a containerized Ubuntu environment. It integrates MCP servers, custom skills, and provides chat/voice interfaces for interacting with Claude.
 
+**Key Features:**
+- Chat and voice interfaces for Claude interaction
+- Docker-containerized Ubuntu environment for computer use
+- 20+ MCP servers for extended capabilities
+- Video capture for screen/window sharing
+- Fresh sessions on each restart
+
 ## Build and Development Commands
 
 ```bash
@@ -28,7 +35,7 @@ npm run build
 # Package for macOS (creates DMG/ZIP in release/)
 npm run package:mac
 
-# Run tests
+# Run tests (Vitest)
 npm test
 
 # Start built application
@@ -37,6 +44,47 @@ npm start
 # Rebuild Docker image after Dockerfile changes
 docker build -t claude-workspace:latest docker/
 ```
+
+## CI/CD Pipeline
+
+### GitHub Actions Workflows
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `ci.yml` | Push/PR to main | TypeScript checks, build verification, tests |
+| `release.yml` | Tags `v*` | Build and publish macOS DMG/ZIP to GitHub Releases |
+
+### Creating a Release
+
+```bash
+# Tag a version
+git tag v1.0.0
+git push origin v1.0.0
+# Release workflow auto-creates GitHub Release with downloadable app
+```
+
+### Automated Security
+
+- **Dependabot** runs weekly, creates PRs for vulnerable dependencies
+- PRs are tested by CI before merge
+- Check status: https://github.com/matheus-rech/computer-use-project/security/dependabot
+
+## Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npx vitest
+
+# Run with coverage
+npx vitest --coverage
+```
+
+**Test Files:**
+- `src/main/voice/VAD.test.ts` - Voice Activity Detection (3 tests)
+- `src/main/voice/AudioCapture.test.ts` - Audio recording (2 tests)
 
 ## Architecture
 
@@ -50,6 +98,7 @@ docker build -t claude-workspace:latest docker/
 │  │  - docker.ts         │    │  - ChatInterface.tsx             │  │
 │  │  - mcp.ts            │    │  - FileManager.tsx               │  │
 │  │  - fileTransfer.ts   │    │  - VoiceInterface.tsx            │  │
+│  │  - voice/            │    │                                  │  │
 │  └──────────┬───────────┘    └──────────────────────────────────┘  │
 └─────────────┼───────────────────────────────────────────────────────┘
               │
@@ -82,6 +131,20 @@ docker build -t claude-workspace:latest docker/
 | `fileTransfer.ts` | File operations between container and host |
 | `preload.ts` | Secure IPC bridge (contextIsolation enabled) |
 
+### Voice System (`src/main/voice/`)
+
+| File | Responsibility |
+|------|----------------|
+| `VoiceEngine.ts` | WebSocket-first voice orchestrator |
+| `AudioCapture.ts` | Microphone capture via node-audiorecorder |
+| `VAD.ts` | Voice Activity Detection |
+| `VideoCapture.ts` | Screen/window capture for AI vision |
+| `LiveSession.ts` | Base class for voice providers |
+| `providers/GeminiLiveSession.ts` | Google Gemini Live (primary, lowest latency) |
+| `providers/OpenAIRealtimeSession.ts` | OpenAI Realtime WebSocket |
+| `providers/ElevenLabsTTS.ts` | Text-to-speech provider |
+| `providers/WhisperSTT.ts` | Speech-to-text fallback |
+
 ### Renderer Process (`src/renderer/`)
 
 React 18 + Tailwind CSS UI components. All IPC calls go through `window.electron.invoke()`.
@@ -105,6 +168,8 @@ React 18 + Tailwind CSS UI components. All IPC calls go through `window.electron
 | `files:list` | List files in container directory |
 | `files:export` | Copy files from container to Mac |
 | `settings:get/set` | Electron-store based settings (API key, preferences) |
+| `voice:start/stop` | Voice session control |
+| `video:capture` | Screen/window capture for vision |
 
 ## Container Environment
 
@@ -117,8 +182,12 @@ React 18 + Tailwind CSS UI components. All IPC calls go through `window.electron
 
 ## TypeScript Configuration
 
-- Main process: `tsconfig.main.json` → `dist/main/` (CommonJS, ES2020)
-- Renderer: `tsconfig.json` with Vite → `dist/renderer/`
+| Config | Target | Output |
+|--------|--------|--------|
+| `tsconfig.main.json` | ES2020/CommonJS | `dist/main/` |
+| `tsconfig.json` | ESNext (Vite) | `dist/renderer/` |
+| `tsconfig.node.json` | ESNext | Vite config only |
+
 - Path alias: `@/*` → `./src/renderer/*`
 - Strict mode enabled
 
@@ -142,6 +211,12 @@ Add to `config/mcp-servers.json`:
 }
 ```
 
+### New Voice Provider
+1. Create provider in `src/main/voice/providers/`
+2. Extend `LiveSession` base class
+3. Implement required methods: `connect()`, `disconnect()`, `sendAudio()`, `sendText()`
+4. Register in `VoiceEngine.ts`
+
 ### Modifying Container
 Edit `docker/Dockerfile`, then rebuild:
 ```bash
@@ -154,3 +229,10 @@ docker build -t claude-workspace:latest docker/
 - Container logs: `docker logs claude-workspace-{sessionId}`
 - App logs: `~/Library/Logs/Claude\ Workspace/main.log`
 - Check container status: `docker ps`
+- Run tests: `npm test`
+
+## Repository
+
+- **GitHub**: https://github.com/matheus-rech/computer-use-project
+- **CI Status**: Check Actions tab for build status
+- **Security**: Check Security tab for Dependabot alerts
