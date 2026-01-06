@@ -307,7 +307,7 @@ export class DockerIsolationManager extends BaseIsolationManager {
 
     const chunks: Buffer[] = [];
     for await (const chunk of stream) {
-      chunks.push(chunk);
+      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     }
 
     // Extract from tar using tar-stream

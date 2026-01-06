@@ -133,7 +133,7 @@ export class DockerManager {
         status: info.State.Status,
         created: info.Created,
         memory: info.HostConfig.Memory,
-        cpus: info.HostConfig.NanoCpus / 1000000000,
+        cpus: (info.HostConfig.NanoCpus ?? 0) / 1000000000,
       };
     } catch (error) {
       console.error('Failed to get container status:', error);
