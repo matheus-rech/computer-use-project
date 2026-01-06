@@ -1,0 +1,168 @@
+{
+  "mcpServers": {
+    "zapier": {
+      "url": "https://mcp.zapier.com/api/mcp/a/15152354/mcp",
+      "name": "Zapier",
+      "enabled": true,
+      "description": "Automation and integration workflows"
+    },
+    "model-inference": {
+      "url": "https://burtenshaw-inference-providers-mcp.hf.space/gradio_api/mcp/sse",
+      "name": "Model Inference",
+      "enabled": true,
+      "description": "ML model inference capabilities"
+    },
+    "deepwiki": {
+      "url": "https://mcp.deepwiki.com/sse",
+      "name": "DeepWiki",
+      "enabled": true,
+      "description": "Deep research and knowledge base"
+    },
+    "simplescraper": {
+      "url": "https://mcp.simplescraper.io/mcp",
+      "name": "SimpleScrapper",
+      "enabled": true,
+      "description": "Web scraping capabilities"
+    },
+    "huggingface": {
+      "url": "https://huggingface.co/mcp",
+      "name": "Hugging Face",
+      "enabled": true,
+      "authenticated": true,
+      "description": "Access to Hugging Face models and datasets"
+    },
+    "cloudflare-workers": {
+      "url": "https://bindings.mcp.cloudflare.com/sse",
+      "name": "Cloudflare Workers",
+      "enabled": true,
+      "description": "Cloudflare Workers deployment"
+    },
+    "cloudflare-observability": {
+      "url": "https://observability.mcp.cloudflare.com/sse",
+      "name": "Cloudflare Observability",
+      "enabled": true,
+      "description": "Monitoring and observability"
+    },
+    "scorecard": {
+      "url": "https://scorecard-mcp.dare-d5b.workers.dev/sse",
+      "name": "Scorecard",
+      "enabled": true,
+      "description": "Scoring and evaluation tools"
+    },
+    "remote-mcp": {
+      "url": "https://mcp.remote-mcp.com",
+      "name": "Remote MCP Server",
+      "enabled": true,
+      "description": "Remote MCP capabilities"
+    },
+    "auth0": {
+      "url": "https://auth0.com/docs",
+      "name": "Auth0",
+      "enabled": false,
+      "description": "Authentication services"
+    },
+    "notion": {
+      "url": "https://mcp.notion.com/mcp",
+      "name": "Notion",
+      "enabled": true,
+      "description": "Notion workspace integration"
+    },
+    "canva": {
+      "url": "https://mcp.canva.com/mcp",
+      "name": "Canva",
+      "enabled": true,
+      "description": "Design and graphics creation"
+    },
+    "invideo": {
+      "url": "https://mcp.invideo.io/sse",
+      "name": "Invideo",
+      "enabled": true,
+      "description": "Video creation and editing"
+    },
+    "netlify": {
+      "url": "https://netlify-mcp.netlify.app/mcp",
+      "name": "Netlify",
+      "enabled": true,
+      "description": "Web hosting and deployment"
+    },
+    "vercel": {
+      "url": "https://mcp.vercel.com",
+      "name": "Vercel",
+      "enabled": true,
+      "description": "Web hosting and deployment"
+    },
+    "jam": {
+      "url": "https://mcp.jam.dev/mcp",
+      "name": "Jam",
+      "enabled": true,
+      "description": "Bug reporting and QA"
+    },
+    "stytch": {
+      "url": "https://mcp.stytch.dev/mcp",
+      "name": "Stytch",
+      "enabled": true,
+      "description": "Authentication and user management"
+    },
+    "learning-commons": {
+      "url": "https://kg.mcp.learningcommons.org/mcp",
+      "name": "Learning Commons Knowledge Graph",
+      "enabled": true,
+      "description": "Educational knowledge graph"
+    },
+    "java-docs": {
+      "url": "https://www.javadocs.dev/mcp",
+      "name": "Java",
+      "enabled": true,
+      "description": "Java documentation access"
+    },
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "name": "Figma",
+      "enabled": true,
+      "description": "Design collaboration"
+    },
+    "n8n": {
+      "url": "https://mmrech-md.app.n8n.cloud/mcp-server/http",
+      "name": "N8N MPC",
+      "enabled": true,
+      "description": "Workflow automation"
+    },
+    "pubmed": {
+      "url": "https://pubmed.mcp.claude.com/mcp",
+      "name": "PubMed",
+      "enabled": true,
+      "description": "Medical literature database"
+    },
+    "biorender": {
+      "url": "https://mcp.services.biorender.com/mcp",
+      "name": "BioRender",
+      "enabled": true,
+      "description": "Scientific illustration creation"
+    },
+    "scholar-gateway": {
+      "url": "https://connector.scholargateway.ai/mcp",
+      "name": "Scholar Gateway",
+      "enabled": true,
+      "description": "Academic research database"
+    }
+  },
+  "localTools": {
+    "filesystem": {
+      "enabled": true,
+      "allowedDirectories": [
+        "/home/claude",
+        "/mnt/user-data",
+        "/mnt/skills"
+      ],
+      "description": "File system access within allowed directories"
+    },
+    "chromeControl": {
+      "enabled": true,
+      "description": "Control Chrome browser for web automation"
+    },
+    "context7": {
+      "enabled": true,
+      "description": "Access up-to-date library documentation"
+    }
+  }
+}

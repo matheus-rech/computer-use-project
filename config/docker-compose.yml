@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  claude-workspace:
+    build:
+      context: ../docker
+      dockerfile: Dockerfile
+    container_name: claude-workspace-${SESSION_ID}
+    hostname: claude-workspace
+    volumes:
+      # Skills directories (read-only from your system)
+      - type: bind
+        source: ${SKILLS_PATH}
+        target: /mnt/skills
+        read_only: true
+      
+      # User data transfer area
+      - type: bind
+        source: ${TRANSFER_PATH}
+        target: /mnt/user-data
+    
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - SESSION_ID=${SESSION_ID}
+      - USER_PREFERENCES=${USER_PREFERENCES}
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 4G
+    
+    # Network configuration
+    network_mode: bridge
+    
+    # Security
+    security_opt:
+      - no-new-privileges:true
+    
+    # Keep container running
+    stdin_open: true
+    tty: true
+    
+    # Auto-remove on stop
+    labels:
+      - "com.claude.workspace=true"
+      - "com.claude.session=${SESSION_ID}"
+
+networks:
+  default:
+    driver: bridge

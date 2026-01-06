@@ -1,0 +1,199 @@
+import Anthropic from '@anthropic-ai/sdk';
+import { WebSocket } from 'ws';
+
+export interface MCPServer {
+  name: string;
+  url: string;
+  enabled: boolean;
+  authenticated?: boolean;
+  description?: string;
+}
+
+export interface MCPConfig {
+  mcpServers: Record<string, MCPServer>;
+  localTools: Record<string, any>;
+}
+
+export class MCPOrchestrator {
+  private client: Anthropic | null = null;
+  private mcpServers: Map<string, MCPServer> = new Map();
+  private connections: Map<string, WebSocket> = new Map();
+  private containerId: string | null = null;
+
+  async initialize(config: MCPConfig, containerId: string): Promise<void> {
+    this.containerId = containerId;
+
+    // Filter enabled servers
+    const enabledServers = Object.entries(config.mcpServers).filter(
+      ([_, server]) => server.enabled
+    );
+
+    for (const [key, server] of enabledServers) {
+      this.mcpServers.set(key, server);
+      console.log(`Registered MCP server: ${server.name} (${server.url})`);
+    }
+
+    console.log(`Initialized ${this.mcpServers.size} MCP servers`);
+  }
+
+  getEnabledServers(): MCPServer[] {
+    return Array.from(this.mcpServers.values());
+  }
+
+  getServerByName(name: string): MCPServer | undefined {
+    for (const server of this.mcpServers.values()) {
+      if (server.name === name) {
+        return server;
+      }
+    }
+    return undefined;
+  }
+
+  getMCPServersForAPI(): Array<{ type: string; url: string; name: string }> {
+    return Array.from(this.mcpServers.values()).map((server) => ({
+      type: 'url',
+      url: server.url,
+      name: server.name,
+    }));
+  }
+
+  async testConnection(serverName: string): Promise<boolean> {
+    const server = this.getServerByName(serverName);
+    if (!server) {
+      throw new Error(`Server ${serverName} not found`);
+    }
+
+    try {
+      // Test SSE endpoint
+      if (server.url.includes('/sse')) {
+        const response = await fetch(server.url, {
+          method: 'GET',
+          headers: {
+            Accept: 'text/event-stream',
+          },
+        });
+        return response.ok;
+      }
+
+      // Test regular endpoint
+      const response = await fetch(server.url, {
+        method: 'GET',
+      });
+      return response.ok;
+    } catch (error) {
+      console.error(`Failed to test connection to ${serverName}:`, error);
+      return false;
+    }
+  }
+
+  async sendMessage(
+    apiKey: string,
+    message: string,
+    options: {
+      useWebSearch?: boolean;
+      useMCPServers?: string[];
+      useTools?: boolean;
+    } = {}
+  ): Promise<any> {
+    if (!this.client) {
+      this.client = new Anthropic({ apiKey });
+    }
+
+    // Prepare tools
+    const tools: any[] = [];
+
+    // Add computer use tools
+    if (options.useTools !== false) {
+      tools.push(
+        {
+          type: 'computer_20241022',
+          name: 'computer',
+          display_width_px: 1920,
+          display_height_px: 1080,
+          display_number: 1,
+        },
+        {
+          type: 'text_editor_20241022',
+          name: 'str_replace_editor',
+        },
+        {
+          type: 'bash_20241022',
+          name: 'bash',
+        }
+      );
+    }
+
+    // Add web search if requested
+    if (options.useWebSearch) {
+      tools.push({
+        type: 'web_search_20250305',
+        name: 'web_search',
+      });
+    }
+
+    // Prepare MCP servers
+    const mcpServers: any[] = [];
+    if (options.useMCPServers) {
+      for (const serverName of options.useMCPServers) {
+        const server = this.getServerByName(serverName);
+        if (server) {
+          mcpServers.push({
+            type: 'url',
+            url: server.url,
+            name: server.name,
+          });
+        }
+      }
+    } else {
+      // Use all enabled servers by default
+      mcpServers.push(...this.getMCPServersForAPI());
+    }
+
+    try {
+      const response = await this.client.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 8096,
+        messages: [
+          {
+            role: 'user',
+            content: message,
+          },
+        ],
+        tools: tools.length > 0 ? tools : undefined,
+        mcp_servers: mcpServers.length > 0 ? mcpServers : undefined,
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      throw error;
+    }
+  }
+
+  async cleanup(): Promise<void> {
+    // Close all WebSocket connections
+    for (const [name, ws] of this.connections.entries()) {
+      try {
+        ws.close();
+        console.log(`Closed connection to ${name}`);
+      } catch (error) {
+        console.error(`Failed to close connection to ${name}:`, error);
+      }
+    }
+
+    this.connections.clear();
+    this.mcpServers.clear();
+    this.client = null;
+    this.containerId = null;
+  }
+
+  getConnectionStatus(): Record<string, boolean> {
+    const status: Record<string, boolean> = {};
+
+    for (const [name, server] of this.mcpServers.entries()) {
+      status[server.name] = this.connections.has(name);
+    }
+
+    return status;
+  }
+}

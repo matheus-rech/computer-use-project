@@ -1,0 +1,404 @@
+{
+  "userSkills": [
+    {
+      "name": "transformers",
+      "path": "/mnt/skills/user/transformers",
+      "description": "Pre-trained transformer models for NLP, computer vision, and audio",
+      "enabled": true
+    },
+    {
+      "name": "statistical-analysis",
+      "path": "/mnt/skills/user/statistical-analysis",
+      "description": "Statistical tests, regression, Bayesian stats for academic research",
+      "enabled": true
+    },
+    {
+      "name": "scikit-survival",
+      "path": "/mnt/skills/user/scikit-survival",
+      "description": "Survival analysis and time-to-event modeling",
+      "enabled": true
+    },
+    {
+      "name": "scikit-learn",
+      "path": "/mnt/skills/user/scikit-learn",
+      "description": "Machine learning algorithms and pipelines",
+      "enabled": true
+    },
+    {
+      "name": "shap",
+      "path": "/mnt/skills/user/shap",
+      "description": "Model interpretability and explainability",
+      "enabled": true
+    },
+    {
+      "name": "pymc-bayesian-modeling",
+      "path": "/mnt/skills/user/pymc-bayesian-modeling",
+      "description": "Bayesian modeling with PyMC",
+      "enabled": true
+    },
+    {
+      "name": "pymatgen",
+      "path": "/mnt/skills/user/pymatgen",
+      "description": "Materials science computational toolkit",
+      "enabled": true
+    },
+    {
+      "name": "pyhealth",
+      "path": "/mnt/skills/user/pyhealth",
+      "description": "Healthcare AI and clinical prediction",
+      "enabled": true
+    },
+    {
+      "name": "pufferlib",
+      "path": "/mnt/skills/user/pufferlib",
+      "description": "Reinforcement learning framework",
+      "enabled": true
+    },
+    {
+      "name": "plotly",
+      "path": "/mnt/skills/user/plotly",
+      "description": "Interactive data visualization",
+      "enabled": true
+    },
+    {
+      "name": "polars",
+      "path": "/mnt/skills/user/polars",
+      "description": "Fast DataFrame library with Apache Arrow",
+      "enabled": true
+    },
+    {
+      "name": "neurokit2",
+      "path": "/mnt/skills/user/neurokit2",
+      "description": "Biosignal processing for physiological data",
+      "enabled": true
+    },
+    {
+      "name": "neuropixels-analysis",
+      "path": "/mnt/skills/user/neuropixels-analysis",
+      "description": "Neural recording analysis for Neuropixels",
+      "enabled": true
+    },
+    {
+      "name": "pathml",
+      "path": "/mnt/skills/user/pathml",
+      "description": "Computational pathology for whole-slide images",
+      "enabled": true
+    },
+    {
+      "name": "pubmed-database",
+      "path": "/mnt/skills/user/pubmed-database",
+      "description": "PubMed REST API access for medical literature",
+      "enabled": true
+    },
+    {
+      "name": "pydicom",
+      "path": "/mnt/skills/user/pydicom",
+      "description": "DICOM medical imaging format handling",
+      "enabled": true
+    },
+    {
+      "name": "networkx",
+      "path": "/mnt/skills/user/networkx",
+      "description": "Network and graph analysis",
+      "enabled": true
+    },
+    {
+      "name": "modal",
+      "path": "/mnt/skills/user/modal",
+      "description": "Serverless compute with GPU support",
+      "enabled": true
+    },
+    {
+      "name": "matchms",
+      "path": "/mnt/skills/user/matchms",
+      "description": "Mass spectrometry data analysis",
+      "enabled": true
+    },
+    {
+      "name": "iso-13485-certification",
+      "path": "/mnt/skills/user/iso-13485-certification",
+      "description": "ISO 13485 QMS documentation for medical devices",
+      "enabled": true
+    },
+    {
+      "name": "hypogenic",
+      "path": "/mnt/skills/user/hypogenic",
+      "description": "Automated hypothesis generation and testing",
+      "enabled": true
+    },
+    {
+      "name": "geopandas",
+      "path": "/mnt/skills/user/geopandas",
+      "description": "Geospatial vector data analysis",
+      "enabled": true
+    },
+    {
+      "name": "fda-database",
+      "path": "/mnt/skills/user/fda-database",
+      "description": "FDA regulatory data and adverse events",
+      "enabled": true
+    },
+    {
+      "name": "exploratory-data-analysis",
+      "path": "/mnt/skills/user/exploratory-data-analysis",
+      "description": "Comprehensive EDA for scientific data",
+      "enabled": true
+    },
+    {
+      "name": "denario",
+      "path": "/mnt/skills/user/denario",
+      "description": "Multiagent research automation system",
+      "enabled": true
+    },
+    {
+      "name": "deeptools",
+      "path": "/mnt/skills/user/deeptools",
+      "description": "NGS analysis for ChIP-seq, RNA-seq, ATAC-seq",
+      "enabled": true
+    },
+    {
+      "name": "astropy",
+      "path": "/mnt/skills/user/astropy",
+      "description": "Astronomy and astrophysics computations",
+      "enabled": true
+    },
+    {
+      "name": "aeon",
+      "path": "/mnt/skills/user/aeon",
+      "description": "Time series machine learning",
+      "enabled": true
+    },
+    {
+      "name": "content-research-writer",
+      "path": "/mnt/skills/user/content-research-writer",
+      "description": "Research-backed content writing assistance",
+      "enabled": true
+    },
+    {
+      "name": "meeting-insights-analyzer",
+      "path": "/mnt/skills/user/meeting-insights-analyzer",
+      "description": "Meeting transcript behavioral analysis",
+      "enabled": true
+    },
+    {
+      "name": "video-downloader",
+      "path": "/mnt/skills/user/video-downloader",
+      "description": "Download videos from YouTube and other platforms",
+      "enabled": true
+    },
+    {
+      "name": "notion-knowledge-capture",
+      "path": "/mnt/skills/user/notion-knowledge-capture",
+      "description": "Transform conversations into Notion documentation",
+      "enabled": true
+    },
+    {
+      "name": "notion-meeting-intelligence",
+      "path": "/mnt/skills/user/notion-meeting-intelligence",
+      "description": "Prepare meeting materials from Notion context",
+      "enabled": true
+    },
+    {
+      "name": "notion-spec-to-implementation",
+      "path": "/mnt/skills/user/notion-spec-to-implementation",
+      "description": "Convert specs into Notion implementation tasks",
+      "enabled": true
+    },
+    {
+      "name": "creating-financial-models",
+      "path": "/mnt/skills/user/creating-financial-models",
+      "description": "DCF analysis and financial modeling",
+      "enabled": true
+    },
+    {
+      "name": "real-time-features",
+      "path": "/mnt/skills/user/real-time-features",
+      "description": "WebSocket, SSE, and real-time functionality",
+      "enabled": true
+    },
+    {
+      "name": "skill-writer",
+      "path": "/mnt/skills/user/skill-writer",
+      "description": "Guide for creating Agent Skills",
+      "enabled": true
+    },
+    {
+      "name": "neuroimaging-segmentation",
+      "path": "/mnt/skills/user/neuroimaging-segmentation",
+      "description": "Brain ultrasound and MRI segmentation",
+      "enabled": true
+    },
+    {
+      "name": "gradio-app-builder",
+      "path": "/mnt/skills/user/gradio-app-builder",
+      "description": "Create interactive Gradio applications",
+      "enabled": true
+    },
+    {
+      "name": "notion-research-documentation",
+      "path": "/mnt/skills/user/notion-research-documentation",
+      "description": "Synthesize Notion workspace into research docs",
+      "enabled": true
+    },
+    {
+      "name": "medical-qa-extraction",
+      "path": "/mnt/skills/user/medical-qa-extraction",
+      "description": "Extract Q&A from medical research PDFs",
+      "enabled": true
+    },
+    {
+      "name": "pdf-annotation-provenance",
+      "path": "/mnt/skills/user/pdf-annotation-provenance",
+      "description": "PDF extraction with coordinate tracking",
+      "enabled": true
+    },
+    {
+      "name": "cerebellar-study-extraction",
+      "path": "/mnt/skills/user/cerebellar-study-extraction",
+      "description": "Extract cerebellar stroke study data",
+      "enabled": true
+    },
+    {
+      "name": "citation-processing",
+      "path": "/mnt/skills/user/citation-processing",
+      "description": "Extract and validate citations with 92% accuracy",
+      "enabled": true
+    },
+    {
+      "name": "medical-paper-extraction",
+      "path": "/mnt/skills/user/medical-paper-extraction",
+      "description": "Multi-agent consensus for medical data extraction",
+      "enabled": true
+    },
+    {
+      "name": "meta-analysis-workflow",
+      "path": "/mnt/skills/user/meta-analysis-workflow",
+      "description": "R-based meta-analysis and systematic reviews",
+      "enabled": true
+    },
+    {
+      "name": "image-enhancer",
+      "path": "/mnt/skills/user/image-enhancer",
+      "description": "Enhance image quality and resolution",
+      "enabled": true
+    },
+    {
+      "name": "file-organizer",
+      "path": "/mnt/skills/user/file-organizer",
+      "description": "Intelligent file organization automation",
+      "enabled": true
+    },
+    {
+      "name": "template-skill",
+      "path": "/mnt/skills/user/template-skill",
+      "description": "Template for creating new skills",
+      "enabled": false
+    },
+    {
+      "name": "webapp-testing",
+      "path": "/mnt/skills/user/webapp-testing",
+      "description": "Playwright-based web application testing",
+      "enabled": true
+    }
+  ],
+  "publicSkills": [
+    {
+      "name": "docx",
+      "path": "/mnt/skills/public/docx",
+      "description": "Word document creation and editing",
+      "enabled": true
+    },
+    {
+      "name": "pdf",
+      "path": "/mnt/skills/public/pdf",
+      "description": "PDF manipulation and form filling",
+      "enabled": true
+    },
+    {
+      "name": "pptx",
+      "path": "/mnt/skills/public/pptx",
+      "description": "PowerPoint presentation creation",
+      "enabled": true
+    },
+    {
+      "name": "xlsx",
+      "path": "/mnt/skills/public/xlsx",
+      "description": "Excel spreadsheet operations",
+      "enabled": true
+    },
+    {
+      "name": "product-self-knowledge",
+      "path": "/mnt/skills/public/product-self-knowledge",
+      "description": "Anthropic product information",
+      "enabled": true
+    },
+    {
+      "name": "frontend-design",
+      "path": "/mnt/skills/public/frontend-design",
+      "description": "Production-grade frontend interfaces",
+      "enabled": true
+    }
+  ],
+  "exampleSkills": [
+    {
+      "name": "doc-coauthoring",
+      "path": "/mnt/skills/examples/doc-coauthoring",
+      "description": "Structured documentation workflow",
+      "enabled": true
+    },
+    {
+      "name": "web-artifacts-builder",
+      "path": "/mnt/skills/examples/web-artifacts-builder",
+      "description": "Complex web artifacts with React",
+      "enabled": true
+    },
+    {
+      "name": "skill-creator",
+      "path": "/mnt/skills/examples/skill-creator",
+      "description": "Guide for creating effective skills",
+      "enabled": true
+    },
+    {
+      "name": "theme-factory",
+      "path": "/mnt/skills/examples/theme-factory",
+      "description": "Style artifacts with pre-set themes",
+      "enabled": true
+    },
+    {
+      "name": "mcp-builder",
+      "path": "/mnt/skills/examples/mcp-builder",
+      "description": "Build high-quality MCP servers",
+      "enabled": true
+    },
+    {
+      "name": "internal-comms",
+      "path": "/mnt/skills/examples/internal-comms",
+      "description": "Internal communications templates",
+      "enabled": true
+    },
+    {
+      "name": "canvas-design",
+      "path": "/mnt/skills/examples/canvas-design",
+      "description": "Visual art creation in PNG/PDF",
+      "enabled": true
+    },
+    {
+      "name": "brand-guidelines",
+      "path": "/mnt/skills/examples/brand-guidelines",
+      "description": "Anthropic brand colors and typography",
+      "enabled": true
+    },
+    {
+      "name": "slack-gif-creator",
+      "path": "/mnt/skills/examples/slack-gif-creator",
+      "description": "Animated GIFs optimized for Slack",
+      "enabled": true
+    },
+    {
+      "name": "algorithmic-art",
+      "path": "/mnt/skills/examples/algorithmic-art",
+      "description": "Generative art with p5.js",
+      "enabled": true
+    }
+  ]
+}
