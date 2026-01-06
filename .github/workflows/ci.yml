@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript check (main process)
+        run: npx tsc --noEmit -p tsconfig.main.json
+
+      - name: TypeScript check (renderer)
+        run: npx tsc --noEmit
+
+      - name: Build main process
+        run: npm run build:main
+
+      - name: Build renderer
+        run: npm run build:renderer
+
+      - name: Run tests
+        run: npm test --if-present
