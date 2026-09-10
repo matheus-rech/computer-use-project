@@ -19,6 +19,6 @@
       "@/*": ["./src/renderer/*"]
     }
   },
-  "include": ["src/renderer"],
+  "include": ["src/renderer", "src/shared/electron-api.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
