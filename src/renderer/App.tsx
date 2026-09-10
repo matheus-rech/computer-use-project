@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ChatInterface } from './ChatInterface';
 import { VoiceInterface } from './VoiceInterface';
 import { FileManager } from './FileManager';
@@ -229,17 +229,14 @@ export function App() {
             </span>
           </div>
 
-          <SessionControl
-            sessionId={sessionId || ''}
-            onStopSession={handleStopSession}
-          />
+          <SessionControl onStopSession={handleStopSession} />
         </div>
 
         {/* Content Area */}
         <div className="flex-1 overflow-hidden">
-          {currentView === 'chat' && <ChatInterface sessionId={sessionId || ''} />}
-          {currentView === 'voice' && <VoiceInterface sessionId={sessionId || ''} />}
-          {currentView === 'files' && <FileManager sessionId={sessionId || ''} />}
+          {currentView === 'chat' && <ChatInterface />}
+          {currentView === 'voice' && <VoiceInterface />}
+          {currentView === 'files' && <FileManager />}
           {currentView === 'settings' && <Settings />}
         </div>
       </div>

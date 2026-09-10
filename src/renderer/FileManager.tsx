@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {
-  FolderOpen,
-  File,
-  Download,
-  Upload,
-  RefreshCw,
-  Trash2,
-} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { FolderOpen, File, Download, RefreshCw } from 'lucide-react';
 
 interface FileItem {
   name: string;
@@ -15,11 +8,7 @@ interface FileItem {
   permissions: string;
 }
 
-interface FileManagerProps {
-  sessionId: string;
-}
-
-export function FileManager({ sessionId }: FileManagerProps) {
+export function FileManager() {
   const [currentPath, setCurrentPath] = useState('/mnt/user-data/outputs');
   const [files, setFiles] = useState<FileItem[]>([]);
   const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());

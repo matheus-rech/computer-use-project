@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 
-interface VoiceInterfaceProps {
-  sessionId: string;
-}
-
-export function VoiceInterface({ sessionId }: VoiceInterfaceProps) {
+export function VoiceInterface() {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
+
+  // The main process forwards every transcript the voice engine emits on this channel, so the panel below stays empty until something subscribes.
+  useEffect(() => {
+    return window.electron.on('voice:transcript', (payload: { text: string }) => {
+      setTranscript(payload.text);
+    });
+  }, []);
 
   function handleToggleListening() {
     setIsListening(!isListening);
