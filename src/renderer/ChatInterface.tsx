@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Send, Loader2 } from 'lucide-react';
 
 interface Message {
@@ -7,11 +7,7 @@ interface Message {
   timestamp: Date;
 }
 
-interface ChatInterfaceProps {
-  sessionId: string;
-}
-
-export function ChatInterface({ sessionId }: ChatInterfaceProps) {
+export function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -69,7 +65,7 @@ export function ChatInterface({ sessionId }: ChatInterfaceProps) {
 
       const errorMessage: Message = {
         role: 'assistant',
-        content: `Error: ${error.message}`,
+        content: `Error: ${error instanceof Error ? error.message : String(error)}`,
         timestamp: new Date(),
       };
 

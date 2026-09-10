@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Power, Save } from 'lucide-react';
 
 interface SessionControlProps {
-  sessionId: string;
   onStopSession: (saveFiles: boolean) => void;
 }
 
-export function SessionControl({ sessionId, onStopSession }: SessionControlProps) {
+export function SessionControl({ onStopSession }: SessionControlProps) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   function handleStop(saveFiles: boolean) {
